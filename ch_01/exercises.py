@@ -13,8 +13,7 @@ from scipy import stats
 # Setting the random seed
 seed_value = 0
 """
-seed_value : int
-    The seed to use for random.seed()
+int: The seed to use for random.seed()
 """
 random.seed(seed_value)
 
@@ -35,7 +34,7 @@ salaries = []
 """
 list[float]: The list to use for this exercise.
 """
-for i in range(0, 100):
+for i in range(0, N_salaries):
     salary = round(random.random() * max_salary, -3)
     salaries.append(salary)
 
@@ -77,6 +76,7 @@ class BasicStatisticsCalculator:
         self._median = self.np.median(self.list_in)
         self._mode = self.stats.mode(self.list_in)
 
+
     @property
     def np(self):
         """
@@ -89,7 +89,7 @@ class BasicStatisticsCalculator:
         """
         scipy.stats: The statistics module from SciPy.
         """
-        return self.stats
+        return self._stats
 
     @property
     def number_of_values(self):
@@ -111,6 +111,13 @@ class BasicStatisticsCalculator:
         numpy.median: The median value in the list to analyze.
         """
         return self._median
+
+    @property
+    def mode(self):
+        """
+        scipy.stats.mode: The most common value in the list to analyze.
+        """
+        return self._mode
 
 
 if __name__ == '__main__':
