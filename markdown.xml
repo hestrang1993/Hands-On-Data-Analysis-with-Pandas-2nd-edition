@@ -1,5 +1,6 @@
 <application>
   <component name="MarkdownApplicationSettings">
+    <MarkdownCssSettings UriEnabled="true" StylesheetUri="C:\Users\harri\OneDrive\Documents\GitHub\github-markdown-css" />
     <enabledExtensions>
       <entry key="MermaidLanguageExtension" value="false" />
       <entry key="PlantUMLLanguageExtension" value="false" />
