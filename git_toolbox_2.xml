@@ -1,0 +1,7 @@
+<application>
+  <component name="GitToolBoxAppSettings2">
+    <option name="absoluteDateTimeStyle" value="ISO_8601" />
+    <option name="commitDialogGitmojiCompletion" value="true" />
+    <option name="commitDialogGitmojiCompletionUnicode" value="true" />
+  </component>
+</application>
