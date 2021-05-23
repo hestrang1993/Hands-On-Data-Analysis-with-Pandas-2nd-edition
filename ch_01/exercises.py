@@ -1,9 +1,6 @@
 """
-The :module:`ch01.exercises` module is meant to test my ability to use
-Python to perform important statistical
-operations.
+The :module:`ch01.exercises` module is meant to test my ability to use Python to perform important statistical operations.
 """
-
 # Imports
 import random
 
@@ -48,7 +45,7 @@ median = np.median(salaries)
 mode = stats.mode(salaries)
 
 # Get the statistical variance of the salaries
-statistical_variance = np.var(salaries, ddof = 1)
+statistical_variance = np.var(salaries, ddof=1)
 
 
 class BasicStatisticsCalculator:
@@ -57,14 +54,14 @@ class BasicStatisticsCalculator:
     1-dimensional :type:`list` of :type:`float` values.
     """
 
-    def __init__(self, list_in = None):
+    def __init__(self, list_in=None):
         """
-        Create an instance of :class:`BasicStatisticsCalculator` on a :type:`list` of :type:`float` values.
+        __init__ Create an instance of :class:`BasicScienceCalculator`.
 
-        Parameters
-        ----------
-        list_in: list[float]
-            The list of float values to perform statistical operations on.
+        [extended_summary]
+
+        Args:
+            list_in (list[float], optional): [description]. Defaults to None.
         """
         if list_in is None:
             list_in = []
@@ -75,7 +72,7 @@ class BasicStatisticsCalculator:
         self._mean = self.np.mean(self.list_in)
         self._median = self.np.median(self.list_in)
         self._mode = self.stats.mode(self.list_in)
-
+        self._statistical_variance = self.np.var(self, ddof=1)
 
     @property
     def np(self):
@@ -101,7 +98,7 @@ class BasicStatisticsCalculator:
     @property
     def mean(self):
         """
-        numpy.mean: The mean value from the list to analyze.
+        int or dtype or ndarray or float64: The mean value from the list to analyze.
         """
         return self._mean
 
@@ -119,9 +116,18 @@ class BasicStatisticsCalculator:
         """
         return self._mode
 
+    @property
+    def statistical_variance(self):
+        """
+        numpy.var: The statistical variance of the list to analyze.
+
+        Includes a Bessel's correction.
+        """
+        return self._statistical_variance
+
 
 if __name__ == '__main__':
     print(f"Salaries: {salaries}")
     print(f"Mean Salary: {mean}")
-    bsc = BasicStatisticsCalculator(list_in = salaries)
+    bsc = BasicStatisticsCalculator(list_in=salaries)
     print(f"Mean Salary: {bsc.mean}")
