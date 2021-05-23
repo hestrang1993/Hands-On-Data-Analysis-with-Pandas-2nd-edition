@@ -98,28 +98,28 @@ class BasicStatisticsCalculator:
     @property
     def mean(self):
         """
-        int or dtype or ndarray or float64: The mean value from the list to analyze.
+        ndarray: The mean value from the list to analyze.
         """
         return self._mean
 
     @property
     def median(self):
         """
-        numpy.median: The median value in the list to analyze.
+        ndarray: The median value in the list to analyze.
         """
         return self._median
 
     @property
     def mode(self):
         """
-        scipy.stats.mode: The most common value in the list to analyze.
+        tuple(ndarray, ndarray): The most common value in the list to analyze.
         """
         return self._mode
 
     @property
     def statistical_variance(self):
         """
-        numpy.var: The statistical variance of the list to analyze.
+        ndarray: The statistical variance of the list to analyze.
 
         Includes a Bessel's correction.
         """
