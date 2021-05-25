@@ -282,8 +282,51 @@ df_csv.filter(like = 'mag').head()
 df_csv.filter(regex = r'^t').head()
 
 
-index_to_set = 'place'
-df_csv.set_index(index_to_set).filter(like = 'Japan', axis = 0).filter(items = columns_dictionary).head()
+df_csv.set_index('place').filter(like = 'Japan', axis = 0).filter(items = columns_dictionary).head()
+
+
+new_column_title = 'source'
+"""
+str: The heading for the new column I want to add.
+"""
+new_column_element = 'USGS API'
+"""
+str: The element I want to broadcast down my DataFrame instance.
+"""
+df_csv[new_column_title] = new_column_element
+# I just want to see if the new elements are added
+df_csv.head()
+
+
+new_column_title = "mag_negative"
+new_column_element = df_csv.mag < 0
+df_csv[new_column_title] = new_column_element
+df_csv.head()
+
+
+df_csv.place.str.extract(r', (.*$)')[0].sort_values().unique()
+
+
+df_csv['parsed_place'] = df_csv.place.str.replace(
+    r'.* of ', '', regex=True # remove anything saying <something> of <something>
+).str.replace(
+    'the ', '' # remove "the "
+).str.replace(
+    r'CA$', 'California', regex=True # fix California
+).str.replace(
+    r'NV$', 'Nevada', regex=True # fix Nevada
+).str.replace(
+    r'MX$', 'Mexico', regex=True # fix Mexico
+).str.replace(
+    r' region$', '', regex=True # chop off endings with " region"
+).str.replace(
+    'northern ', '' # remove "northern "
+).str.replace(
+    'Fiji Islands', 'Fiji' # line up the Fiji places
+).str.replace(
+    r'^.*, ', '', regex=True # remove anything else extraneous from the beginning
+).str.strip() # remove any extra spaces
+df_csv.parsed_place.sort_values().unique()
 
 
 
