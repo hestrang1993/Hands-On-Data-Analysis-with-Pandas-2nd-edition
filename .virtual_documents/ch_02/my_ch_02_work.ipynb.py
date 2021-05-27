@@ -329,4 +329,39 @@ df_csv['parsed_place'] = df_csv.place.str.replace(
 df_csv.parsed_place.sort_values().unique()
 
 
+in_california = df_csv.parsed_place.str.endswith('California')
+"""
+pandas.core.series.Series: A column for whether the earthquake occurred in California.
+"""
+in_alaska = df_csv.parsed_place.str.endswith('Alaska')
+"""
+pandas.core.series.Series: A column for whether the earthquake occurred in Alaska.
+"""
+number_of_columns_to_sample = 10
+"""
+int: The number of columns to sample from the original DataFrame instance.
+"""
+df_csv.assign(
+    in_california = df_csv.parsed_place.str.endswith('California'),
+    in_alaska = df_csv.parsed_place.str.endswith('Alaska')).sample(number_of_columns_to_sample, random_state = 0)
+
+
+df_csv.assign(
+    in_california = df_csv.parsed_place == 'California',
+    in_alaska = df_csv.parsed_place == 'Alaska',
+    neither = lambda x: ~x.in_california & ~x.in_alaska
+).sample(number_of_columns_to_sample, random_state = 0)
+
+
+tsunami = df_csv[df_csv.tsunami == 1]
+"""
+pandas.core.frame.DataFrame: A DataFrame instance that includes all earthquakes that led to a tsunami.
+"""
+no_tsunami = df_csv[df_csv.tsunami == 0]
+"""
+pandas.core.frame.DataFrame: A DataFrame instance that includes all earthquakes that did not lead to a tsunami.
+"""
+pd.concat([tsunami, no_tsunami], axis = 0)
+
+
 
