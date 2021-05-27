@@ -15,7 +15,7 @@ int: The seed to use for random.seed()
 random.seed(seed_value)
 
 # Variables to help build the salaries list
-N_salaries = 100  # Number of salaries in the salaries list
+N_salaries = 100  # Number of salaries in thSe salaries list
 """
 int: The number of salaries to randomly generate for this exercise.
 
@@ -98,32 +98,40 @@ class BasicStatisticsCalculator:
     @property
     def mean(self):
         """
-        ndarray: The mean value from the list to analyze.
+        int or dtype or ndarray or float64: The mean value from the list to analyze.
         """
         return self._mean
 
     @property
     def median(self):
         """
-        ndarray: The median value in the list to analyze.
+        numpy.median: The median value in the list to analyze.
         """
         return self._median
 
     @property
     def mode(self):
         """
-        tuple(ndarray, ndarray): The most common value in the list to analyze.
+        scipy.stats.mode: The most common value in the list to analyze.
         """
         return self._mode
 
     @property
     def statistical_variance(self):
         """
-        ndarray: The statistical variance of the list to analyze.
+        numpy.var: The statistical variance of the list to analyze.
 
         Includes a Bessel's correction.
         """
         return self._statistical_variance
+
+    @property
+    def test(self):
+        """
+        test [summary]
+
+        [extended_summary]
+        """
 
 
 if __name__ == '__main__':

@@ -22,3 +22,4 @@ pandas.core.frame.DataFrame: The DataFrame instance
 
 if __name__ == '__main__':
     print(type(df_csv))
+    print(df_csv)
