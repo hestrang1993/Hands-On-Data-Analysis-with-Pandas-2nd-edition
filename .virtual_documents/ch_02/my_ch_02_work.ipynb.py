@@ -364,4 +364,23 @@ pandas.core.frame.DataFrame: A DataFrame instance that includes all earthquakes 
 pd.concat([tsunami, no_tsunami], axis = 0)
 
 
+get_columns = ['tz', 'felt', 'ids']
+"""
+list(str): A set of columns I want to add to my DataFrame instance.
+"""
+n_rows_to_get = 2
+"""
+int: The number of rows to return from the updated DataFrame instance.
+"""
+additional_columns = pd.read_csv(csv_file_path, usecols = get_columns)
+"""
+pandas.core.frame.DataFrame: A DataFrame instance with some columns I want to retrieve.
+"""
+build_list = [df_csv.head(n_rows_to_get), additional_columns.head(n_rows_to_get)]
+"""
+list(pandas.core.frame.DataFrame, pandas.core.frame.DataFrame): An expanded DataFrame instance.
+"""
+pd.concat(build_list, axis = 1)
+
+
 
