@@ -4,5 +4,8 @@
     ],
     "autoDocstring.includeExtendedSummary": true,
     "autoDocstring.startOnNewLine": true,
-    "python.pythonPath": "C:\\Users\\harri\\anaconda3\\envs\\pandas\\python.exe"
+    "python.pythonPath": "C:\\Users\\harri\\anaconda3\\envs\\pandas\\python.exe",
+    "autoDocstring.docstringFormat": "numpy",
+    "autoDocstring.includeName": true,
+    "python.jediPath": "C:\\Users\\harri\\anaconda3\\envs\\pandas\\Lib\\site-packages"
 }
