@@ -21,6 +21,11 @@
         <option value="Default.Date" />
       </list>
     </option>
+    <option name="COLUMN_ID_VISIBILITY">
+      <map>
+        <entry key="Table.Default.Hash.ColumnIdVisibility" value="false" />
+      </map>
+    </option>
     <option name="CUSTOM_BOOLEAN_PROPERTIES">
       <map>
         <entry key="Change.Log.Filter.on.Branch.Selection" value="true" />
