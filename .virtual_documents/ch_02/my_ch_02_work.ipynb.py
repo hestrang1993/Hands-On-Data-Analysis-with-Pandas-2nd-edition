@@ -383,4 +383,74 @@ list(pandas.core.frame.DataFrame, pandas.core.frame.DataFrame): An expanded Data
 pd.concat(build_list, axis = 1)
 
 
+pd.concat(
+    [tsunami.head(2), no_tsunami.head(2).assign(type = 'earthquake')], join = 'inner'
+)
+
+
+pd.concat(
+    [tsunami.head(2), no_tsunami.head(2).assign(type = 'earthquake')], join = 'inner', ignore_index = True
+)
+
+
+column_to_delete = 'sources'
+"""
+str: The column heading for the column I want to delete from my DataFrame instance.
+"""
+df_csv.columns
+
+
+del df_csv[column_to_delete]
+df_csv.columns
+
+
+try:
+    del df_csv[column_to_delete]
+except KeyError:
+    print(f'The {column_to_delete} column is not in this DataFrame instance anymore.')
+
+
+column_to_pop = 'mag_negative'
+"""
+str: The column heading for the column I want to pop out of the DataFrame instance.
+"""
+popped_column = df_csv.pop(column_to_pop)
+"""
+pandas.core.series.Series: The column I popped out of my DataFrame instance.
+"""
+print(type(popped_column))
+
+
+df_csv
+
+
+# This column solely exist to include the variable name in a markdown cell.
+# The import I need to do to display text as Markdown.
+# from IPython.display import Markdown as md
+
+
+popped_column
+
+
+df_csv[popped_column].head()
+
+
+rows_to_drop = [0, 10]
+"""
+[int, int]: The indices to drop from my DataFrame instance.
+"""
+df_csv.drop([0, 1, 2, 3, 4, 5]).head(5)
+
+
+colums_to_drop_list = ['alert', 'mag', 'title', 'time', 'tsunami']
+columns_to_drop = [
+    col for col in df_csv.columns if col not in colums_to_drop_list
+]
+df_csv.drop(columns = columns_to_drop).head()
+
+
+df_csv.drop(columns = columns_to_drop, inplace = True)
+df_csv.head()
+
+
 
