@@ -11,6 +11,8 @@
     <option name="cloneParentDir" value="C:\Users\harri\PycharmProjects" />
   </component>
   <component name="Vcs.Log.App.Settings">
+    <option name="SHOW_DIFF_PREVIEW" value="true" />
+    <option name="DIFF_PREVIEW_VERTICAL_SPLIT" value="false" />
     <option name="COLUMN_ID_ORDER">
       <list>
         <option value="Default.Root" />
@@ -18,6 +20,11 @@
         <option value="Default.Author" />
         <option value="Default.Date" />
       </list>
+    </option>
+    <option name="COLUMN_ID_VISIBILITY">
+      <map>
+        <entry key="Table.Default.Hash.ColumnIdVisibility" value="false" />
+      </map>
     </option>
     <option name="CUSTOM_BOOLEAN_PROPERTIES">
       <map>
