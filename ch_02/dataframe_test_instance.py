@@ -1,9 +1,9 @@
 """
-The :py:mod:`ch_02.dataframe_test_instance` contains the :pandas.core.frame.DataFrame:`DataFrame` object I will use to
+The :mod:`ch_02.dataframe_test_instance` contains the :obj:`DataFrame` object I will use to
 learn about
 :obj:`DataFrame` objects in this chapter.
 
-The object in question is :pandas.core.frame.DataFrame:`df_csv`.
+The object in question is :obj:`df_csv`.
 """
 
 # Key Imports
