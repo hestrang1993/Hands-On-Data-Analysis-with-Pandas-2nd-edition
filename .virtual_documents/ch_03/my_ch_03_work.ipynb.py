@@ -37,4 +37,12 @@ pandas.core.frame.DataFrame: The long format DataFrame instance.
 long_df = long_df[use_columns_long]
 
 
+# Get the first x number of columns from the wide DataFrame instance
+number_of_rows_to_get = 6
+wide_df.head(number_of_rows_to_get)
+
+
+wide_df.describe(include = 'all', datetime_is_numeric = True)
+
+
 
