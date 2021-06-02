@@ -1,6 +1,7 @@
 # Necessary imports
 from matplotlib import pyplot as plt
 import pandas as pd
+import requests
 import seaborn as sns
 
 # File paths
@@ -121,5 +122,47 @@ plt.show()
 # The token dictionary I need to access the NCEI data.
 api_token_dict = {'token': 'ysVIqRTQlsItJQPLcOelgYbIIxPancXx'}
 """
-{str: str}: The NCEI API token key I need to access the data.
+dict[str: str]: The NCEI API token key I need to access the data.
 """
+
+# Variables to help with my GET request.
+api_website = 'https://www.ncdc.noaa.gov/cdo-web/api/v2/'
+"""
+str: The website I'll use for the NCEI API request.
+"""
+request_endpoint = 'datasets'
+"""
+str: The name of the endpoint I want to get.
+"""
+test_payload = {'startdate': '2018-10-01'}
+"""
+dict[str, str]: The payload I want to retrieve.
+"""
+
+
+def make_request(endpoint, payload=None):
+    """
+    Make a request to a specific endpoint on the weather API
+    passing headers and optional payload.
+
+    Parameters
+    ----------
+    endpoint: str
+        The endpoint of the API I want to make a GET request to.
+    payload: dict[str, str]
+        A dictionary of data to pass along with the request.
+
+    Returns
+    -------
+    requests.Response
+        A response object.
+    """
+    return requests.get(
+            f'{api_website}{endpoint}',
+            headers=api_token_dict,
+            params=payload
+    )
+
+
+response = make_request(request_endpoint, test_payload)
+response.ok
