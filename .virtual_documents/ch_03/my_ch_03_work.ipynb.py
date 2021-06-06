@@ -1,3 +1,35 @@
+from IPython.core.display import display, HTML
+display(HTML("<style>.container { width:100% get_ipython().getoutput("important; }</style>"))")
+
+
+get_ipython().run_cell_magic("html", "", """<!--Style the <div> and <iframe> tags-->
+<style>
+/*Make a 16:9 container*/
+.container {
+    position: relative;
+    overflow: hidden;
+    width: 100%;
+    padding-top: 56.25%;
+}
+/*Make the iframe responsive*/
+.responsive-iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    width: 100%;
+    height: 100%;
+    border: none;
+}
+</style>
+<!--Create the div-->
+<div class="container">
+    <!--Create the iframe-->
+    <iframe src="https://www.ncdc.noaa.gov/cdo-web/webservices/v2" class="responsive-iframe"><iframe>
+</div>""")
+
+
 # Necessary imports
 from matplotlib import pyplot as plt
 import pandas as pd
@@ -253,6 +285,28 @@ response = make_request(endpoint_in, payload_in)
 
 # Check to see if the response went through.
 response.ok
+
+
+payload = response.json()['results']
+"""
+dict: The payload with the results I want.
+"""
+payload
+
+
+limit = 100
+"""
+int: The number of datatypes I want to get.
+"""
+endpoint_in = 'datatypes'
+payload_in = {'datacategoryid': 'TEMP', 'limit': limit}
+response = make_request(endpoint_in, payload_in)
+response.ok
+
+
+payload = response.json()
+list_comprehension = parse_payload('id', 'name', 'results', payload)
+list_comprehension
 
 
 
