@@ -1,9 +1,13 @@
-from IPython.core.display import display, HTML
-display(HTML("<style>.container { width:100% get_ipython().getoutput("important; }</style>"))")
+# Set how Python handles rendering code cells, particularly HTML
+from IPython.core.display import HTML
+from IPython.core.display import display
+
+display(HTML("<style>.container { width:100% get_ipython().getoutput("
+important;} < / style > "))")
 
 
-get_ipython().run_cell_magic("html", "", """<!--Style the <div> and <iframe> tags-->
-<style>
+get_ipython().run_cell_magic(
+        "html", "", """<style>
 /*Make a 16:9 container*/
 .container {
     position: relative;
@@ -33,6 +37,7 @@ get_ipython().run_cell_magic("html", "", """<!--Style the <div> and <iframe> tag
 # Necessary imports
 from matplotlib import pyplot as plt
 import pandas as pd
+from pprint import pprint
 import requests
 import seaborn as sns
 
@@ -303,10 +308,14 @@ payload_in = {'datacategoryid': 'TEMP', 'limit': limit}
 response = make_request(endpoint_in, payload_in)
 response.ok
 
-
 payload = response.json()
 list_comprehension = parse_payload('id', 'name', 'results', payload)
 list_comprehension
 
+# Get the location category ID.
+endpoint_in = 'locationcategories'
+payload_in = {'datasetid': 'GHCND'}
+response = make_request(endpoint_in, payload_in)
+payload = response.json()
 
-
+pprint(payload)
