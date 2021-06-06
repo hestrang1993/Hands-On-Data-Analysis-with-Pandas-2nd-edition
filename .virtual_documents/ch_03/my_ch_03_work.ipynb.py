@@ -1,13 +1,9 @@
 # Set how Python handles rendering code cells, particularly HTML
-from IPython.core.display import HTML
-from IPython.core.display import display
-
-display(HTML("<style>.container { width:100% get_ipython().getoutput("
-important;} < / style > "))")
+from IPython.core.display import display, HTML
+display(HTML("<style>.container { width:100% get_ipython().getoutput("important; }</style>"))")
 
 
-get_ipython().run_cell_magic(
-        "html", "", """<style>
+get_ipython().run_cell_magic("html", "", """<style>
 /*Make a 16:9 container*/
 .container {
     position: relative;
@@ -308,9 +304,11 @@ payload_in = {'datacategoryid': 'TEMP', 'limit': limit}
 response = make_request(endpoint_in, payload_in)
 response.ok
 
+
 payload = response.json()
 list_comprehension = parse_payload('id', 'name', 'results', payload)
 list_comprehension
+
 
 # Get the location category ID.
 endpoint_in = 'locationcategories'
@@ -318,4 +316,8 @@ payload_in = {'datasetid': 'GHCND'}
 response = make_request(endpoint_in, payload_in)
 payload = response.json()
 
+
 pprint(payload)
+
+
+
