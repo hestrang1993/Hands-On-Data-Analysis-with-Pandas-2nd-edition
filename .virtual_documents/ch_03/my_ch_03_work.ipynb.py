@@ -589,6 +589,37 @@ central_park_endpoint = 'data'
 """
 str: The endpoint for where I the temperature data for NYC Central Park is.
 """
+
+def make_name_payload_in(stationid):
+    """
+    Creates a payload that will help me retrieve the data I need to get temperatures from NY.
+    
+    Parameters
+    ----------
+    stationid : str
+        The ID for the station I want to retrieve.
+    
+    Returns
+    -------
+    dict
+        The payload I need to submit to get the temperature data for a station in NY.
+    """
+    payload_in = {
+        'datasetid': 'GHCND',
+        'stationid': stationid,
+        'locationid': nyc['id'],
+        'startdate': '2018-10-01',
+        'enddate': '2018-10-31',
+        'datatypeid': [
+                'TAVG',
+                'TMAX',
+                'TMIN'
+        ],
+        'units': 'metric',
+        'limit': 1000
+    }
+    return payload_in
+
 central_park_payload_in = {
         'datasetid': 'GHCND',
         'stationid': central_park['id'],
@@ -626,6 +657,94 @@ df_central_park = pd.DataFrame(central_park_response)
 pandas.core.frame.DataFrame: The DataFrame with the daily minimum and maximum temperatures from NYC Central Park during October, 2018.
 """
 df_central_park.head()
+
+
+laguardia_name = 'LaGuardia'
+"""
+str: The item to look for.
+
+In this case, it is the station at LaGuardia Airport.
+"""
+laguardia_what = {'locationid': nyc['id']}
+"""
+dict[str: dict]: Dictionary specifying what the item in ``laguardia_name`` is.
+"""
+laguardia_endpoint = 'stations'
+"""
+str: Where to look for the LaGuardia Airport ID.
+"""
+laguardia = get_item(laguardia_name, laguardia_what, laguardia_endpoint)
+"""
+dict: Dictionary with information I need to retrieve data from Laguardia Airport.
+"""
+laguardia_payload_in = make_name_payload_in(laguardia['id'])
+laguardia_response = make_request(
+    'data',
+    laguardia_payload_in
+)
+"""
+request.Response: A JSON formatted dataset with temperature at LaGuardia Airport during October, 2018.
+"""
+# Check to see if the request went through
+laguardia_response.ok
+
+
+df_laguardia = pd.DataFrame(laguardia_response.json()['results'])
+"""
+pandas.core.frame.DataFrame: The DataFrame that contain temperatures at LaGuardia Airport during October, 2018.
+"""
+# Inspect the data
+df_laguardia.head()
+
+
+laguardia_relative_file_path = 'data/my_laguardia_temperatures.csv'
+"""
+str: The relative file path for the CSV file with temperatures from LaGuardia Airport (October 2018).
+"""
+df_laguardia.to_csv(laguardia_relative_file_path, index = False)
+
+
+df_laguardia = pd.read_csv(laguardia_relative_file_path)
+"""
+pandas.core.frame.DataFrame: The DataFrame that contain temperatures at LaGuardia Airport during October, 2018.
+"""
+# Inspect the data
+df_laguardia.head()
+
+
+# Print the columns of the DataFrame instance
+old_columns = df_laguardia.columns
+"""
+pandas.core.indexes.base.Index: An index of all the original column headings.
+
+I'll change these later, so I decided to store the old headings as an Index. That way, it'll be easier to see how the headings have changed.
+"""
+old_columns
+
+
+columns_to_rename = {
+    "value": "temperature_Celsius",
+    "attributes": "flags"
+}
+"""
+dict[str: str]: A dictionary that maps the columns I want to rename to what I want to call them.
+"""
+
+# Rename the columns
+df_laguardia.rename(
+    columns = columns_to_rename,
+    inplace = True
+)
+
+# Check the names of the columns
+new_columns_lowercase = df_laguardia.columns
+"""
+pandas.core.indexes.base.Index: An index of all the column headings after I renamed two columns.
+"""
+new_columns_lowercase
+
+
+
 
 
 
