@@ -780,4 +780,61 @@ df_laguardia_dates_object.describe()
 df_laguardia_dates_datetime.describe(datetime_is_numeric=True)
 
 
+# Variables for the example DatetimeIndex
+start_string = "2018-10-01"
+"""
+str: The starting point for the DatetimeIndex.
 
+Should be in YYYY-MM-DD format.
+"""
+period_integer = 31
+"""
+int: The number of periods to add to the DatetimeIndex.
+
+This will be further refined by the ``freq`` argument.
+"""
+freq_string = "D"
+"""
+str: The kind of data to collect.
+"""
+time_zone_string = "EST"
+"""
+str: The specific timezone I want my DatetimeIndex to return.
+"""
+
+# Create the example DatetimeIndex
+example_datetimeindex = pd.date_range(
+    start = start_string,
+    periods = period_integer,
+    freq = freq_string,
+    tz = time_zone_string
+)
+"""
+pandas.core.indexes.datetimes.DatetimeIndex: An example of a DatetimeIndex.
+"""
+example_datetimeindex
+
+
+# Variables to load in the CSV again and to set the date column to the index
+date_header = 'date'
+"""
+str: The header for the date column.
+"""
+
+# Load the CSV and set the date column to the index
+eastern_datetimeindex = pd.read_csv(
+    laguardia_relative_file_path,
+    index_col = date_header,
+    parse_dates = True
+)
+"""
+pandas.core.frame.DataFrame: The DataFrame that contain temperatures at LaGuardia Airport during October, 2018.
+
+Here, the date column will be used as the index for the data.
+"""
+
+# Convert the dates to Eastern Standard Time (EST)
+eastern_datetimeindex = eastern_datetimeindex.tz_localize(time_zone_string)
+
+# Show the first 5 rows
+eastern_datetimeindex.head()
