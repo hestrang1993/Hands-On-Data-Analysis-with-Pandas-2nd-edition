@@ -744,7 +744,40 @@ pandas.core.indexes.base.Index: An index of all the column headings after I rena
 new_columns_lowercase
 
 
+df_laguardia.rename(str.upper, axis='columns').columns
 
+
+df_laguardia.dtypes
+
+
+df_laguardia_dates_object = df_laguardia.loc[:, 'date']
+"""
+pandas.core.series.Series: A pandas Series instance that contains all the dates within my LaGuardia Airport temperature DataFrame instance.
+
+I made this to show how I can convert ``object`` data to ``datetime`` data.
+"""
+# Note that the values are currently object datatypes.
+df_laguardia_dates_object
+
+
+# Perform the conversion
+df_laguardia_dates_datetime = pd.to_datetime(df_laguardia.date)
+"""
+pandas.core.series.Series: A pandas Series instance that contains all the dates within my LaGuardia Airport temperature DataFrame instance.
+
+The dates in this Series instance will all be converted into datetime dtypes.
+"""
+
+# Note that the datatype has changed to datetime data.
+df_laguardia_dates_datetime
+
+
+# Describe the old Series for comparison purposes.
+df_laguardia_dates_object.describe()
+
+
+# Describe the new Series.
+df_laguardia_dates_datetime.describe(datetime_is_numeric=True)
 
 
 
